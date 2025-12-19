@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Motors Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Luxury Motors Collection</h1>
+        <div class="cart-icon" onclick="cart.toggleDisplay()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </div>
+    </header>
+
+    <section class="admin-panel">
+        <h2>List a New Vehicle</h2>
+        <form id="upload-form" onsubmit="inventory.upload(event)">
+            <input type="text" id="car-name" placeholder="Car Model (e.g. Ferrari F8)" required>
+            <input type="number" id="car-price" placeholder="Price in GBP" required>
+            <input type="text" id="car-img" placeholder="Image URL (e.g. https://images.com/car.jpg)" required>
+            <button type="submit">Upload to Collection</button>
+        </form>
+    </section>
+
+    <main id="car-list" class="car-grid"></main>
+
+    <aside id="shopping-cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <div class="cart-total">
+            Total: <span id="cart-total-price">£0.00</span>
+        </div>
+        <button class="checkout-btn" onclick="cart.showCheckout()">Proceed to Checkout</button>
+        <button class="nuke-btn" onclick="cart.nuke()">Empty Cart</button>
+    </aside>
+
+    <div id="checkout-page" class="overlay">
+        <div class="checkout-content">
+            <h2>Complete Your Purchase</h2>
+            <div id="checkout-summary"></div>
+            <p>Enter your details to finalize the luxury acquisition.</p>
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email Address">
+            <button onclick="cart.finalize()">Finalize Payment</button>
+            <button class="close-btn" onclick="cart.closeCheckout()">Cancel</button>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
